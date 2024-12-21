@@ -1,11 +1,22 @@
-#Minikube Installation On AWS EC2
--What you’ll need
-2 CPUs or more 2GB of free memory 20GB of free disk space Internet connection Container or virtual machine manager, such as: Docker, QEMU, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMware Fusion/Workstation
 
--Step 1: We will create AWS EC2 t2.medium server Ubuntu server
--Step 2: Docker Instllation on Ubuntu
-for this example I am considering the Docker as virtual machine manager. So we will install docker first on the EC2 machine.
-# Add Docker's official GPG key:
+# Minikube Installation On AWS EC2
+
+
+
+## What you’ll need
+2 CPUs or more 2GB of free memory 20GB of free disk space Internet connection Container or virtual machine manager, such as: Docker, QEMU, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMware Fusion/Workstation
+## What you’ll need
+2 CPUs or more 2GB of free memory 20GB of free disk space Internet connection Container or virtual machine manager, such as: Docker, QEMU, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMware Fusion/Workstation
+## Step 1: We will create AWS EC2 t2.medium server Ubuntu server
+
+
+## Step 2: Docker Instllation on Ubuntu
+
+for this example I am considering the Docker as virtual machine manager. So we will install docker first on the EC2 machine
+
+
+```bash
+  # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -21,24 +32,40 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
--Step3: Add ubuntu user to docker group
+```
+
+
+## Step3: Add ubuntu user to docker group
+```bash
 sudo usermod -aG docker ubuntu
 
--Step4: To install the latest minikube stable release on x86-64 Linux using binary download:
+```
+
+## Step4: To install the latest minikube stable release on x86-64 Linux using binary download:
+```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 
--Step 5: Start your cluster
-minikube start
 
--Step 6: Install kubectl
+```
+
+## Step 5: Start your cluster
+```bash
+minikbe start
+```
+
+## Step 6: Install kubectl
+```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+```
 Test to ensure the version you installed is up-to-date: kubectl version --client
 
--Step 7: Interact with your cluster
+## Step 7: Interact with your cluster
+```bash
 kubectl run demo-1 --image nginx
 kubectl get pods
 
-
+```
